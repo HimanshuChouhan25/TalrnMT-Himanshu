@@ -35,10 +35,11 @@ npm install
 3. **Configure EmailJS**
    - Sign up at https://www.emailjs.com/
    - Create a service and template
-   - Update the EmailJS configuration in `src/pages/Join.jsx`:
-     - Replace `service_424j3ze` with your service ID
-     - Replace `template_lrow0tf` with your template ID
-     - Replace `bWluoa39pds01O4XM` with your public key
+   - Copy `.env.example` to `.env` and update with your credentials:
+     ```bash
+     cp .env.example .env
+     ```
+   - Update the values in `.env` file with your EmailJS credentials
 
 4. **Start the development server**
 ```bash

@@ -6,7 +6,7 @@ const Join = () => {
   const [step, setStep] = useState(1);
   
   useEffect(() => {
-    emailjs.init('bWluoa39pds01O4XM'); // Initialize with your public key
+    emailjs.init(process.env.REACT_APP_EMAILJS_PUBLIC_KEY);
   }, []);
   const [formData, setFormData] = useState({
     email: '',
@@ -39,8 +39,8 @@ const Join = () => {
 
     try {
       await emailjs.send(
-        'service_424j3ze', //  EmailJS service ID
-        'template_lrow0tf', // EmailJS template ID
+        process.env.REACT_APP_EMAILJS_SERVICE_ID,
+        process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
         {
           to_email: formData.email,
           otp_code: otp,
