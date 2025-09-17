@@ -6,7 +6,9 @@ const Join = () => {
   const [step, setStep] = useState(1);
   
   useEffect(() => {
-    emailjs.init(process.env.REACT_APP_EMAILJS_PUBLIC_KEY);
+    const publicKey = process.env.REACT_APP_EMAILJS_PUBLIC_KEY || 'bWluoa39pds01O4XM';
+    console.log('Public Key:', publicKey);
+    emailjs.init(publicKey);
   }, []);
   const [formData, setFormData] = useState({
     email: '',
@@ -38,9 +40,15 @@ const Join = () => {
     setGeneratedOTP(otp);
 
     try {
+      const serviceId = process.env.REACT_APP_EMAILJS_SERVICE_ID || 'service_424j3ze';
+      const templateId = process.env.REACT_APP_EMAILJS_TEMPLATE_ID || 'template_lrow0tf';
+      
+      console.log('Service ID:', serviceId);
+      console.log('Template ID:', templateId);
+      
       await emailjs.send(
-        process.env.REACT_APP_EMAILJS_SERVICE_ID,
-        process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
+        serviceId,
+        templateId,
         {
           to_email: formData.email,
           otp_code: otp,
