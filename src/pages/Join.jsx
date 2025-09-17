@@ -1,9 +1,13 @@
- import React, { useState } from 'react';
+ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import emailjs from 'emailjs-com';
 
 const Join = () => {
   const [step, setStep] = useState(1);
+  
+  useEffect(() => {
+    emailjs.init('bWluoa39pds01O4XM'); // Initialize with your public key
+  }, []);
   const [formData, setFormData] = useState({
     email: '',
     firstName: '',
@@ -35,14 +39,14 @@ const Join = () => {
 
     try {
       await emailjs.send(
-        'service_talrn', // Replace with your EmailJS service ID
-        'template_otp', // Replace with your EmailJS template ID
+        'service_424j3ze', //  EmailJS service ID
+        'template_lrow0tf', // EmailJS template ID
         {
           to_email: formData.email,
           otp_code: otp,
           user_name: formData.firstName || 'User'
         },
-        'your_public_key' // Replace with your EmailJS public key
+        // Public key 
       );
       setStep(2);
       setErrors({});
